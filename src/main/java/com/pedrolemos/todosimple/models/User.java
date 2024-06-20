@@ -1,5 +1,6 @@
 package com.pedrolemos.todosimple.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
@@ -56,22 +57,23 @@ public class User {
         this.id = id;
     }
 
-    public @NotNull(groups = CreateUser.class) @NotEmpty(groups = CreateUser.class) @Size(groups = CreateUser.class, min = 2, max = 100) String getUsername() {
+    public String getUsername() {
         return username;
     }
 
-    public void setUsername(@NotNull(groups = CreateUser.class) @NotEmpty(groups = CreateUser.class) @Size(groups = CreateUser.class, min = 2, max = 100) String username) {
+    public void setUsername(String username) {
         this.username = username;
     }
 
-    public @NotNull(groups = {CreateUser.class, UpdateUser.class}) @NotEmpty(groups = {CreateUser.class, UpdateUser.class}) @Size(groups = {CreateUser.class, UpdateUser.class}, min = 8, max = 60) String getPassword() {
+    public String getPassword() {
         return password;
     }
 
-    public void setPassword(@NotNull(groups = {CreateUser.class, UpdateUser.class}) @NotEmpty(groups = {CreateUser.class, UpdateUser.class}) @Size(groups = {CreateUser.class, UpdateUser.class}, min = 8, max = 60) String password) {
+    public void setPassword(String password) {
         this.password = password;
     }
 
+    @JsonIgnore
     public List<Task> getTasks() {
         return tasks;
     }
